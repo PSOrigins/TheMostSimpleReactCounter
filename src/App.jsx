@@ -2,25 +2,23 @@ import './App.css';
 import React, { Component } from 'react';
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      meaningOfLife: 47,
-    }
+  state = {
+    meaningOfLife: 0 + this.props.increment,
   }
-
+  
   PlusIt = async () =>{
-    await this.setState({ meaningOfLife: this.state.meaningOfLife + 1})
+    await this.setState((prevState, prevProps) => ({meaningOfLife: prevState.meaningOfLife + prevProps.increment}))
     console.log(this.state.meaningOfLife);
   } 
 
   MinusIt = async () => {
-    await this.setState({ meaningOfLife: this.state.meaningOfLife -1})
+    await this.setState((prevState, prevProps) => ({ meaningOfLife: prevState.meaningOfLife - prevProps.increment}))
     console.log(this.state.meaningOfLife);
   }
 
   Reset = async () => {
     await this.setState({ meaningOfLife: 0 })
+    console.log(this.state.meaningOfLife)
   }
 
   render(){
